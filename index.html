@@ -1,109 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS Clock</title>
-  </head>
 
-  <style>
-    body {
-      background-color: black;
-      color: #00e2d7;
-      text-align: center;
-      max-width: 400px;
-      padding: 1rem;
-      margin: auto;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS Clock</title>
+</head>
 
-    .clock {
-      font-size: 4rem;
-    }
+<style>
+  :root{
+    --background-color: #dbdbdb;
+  }
 
-    .day,
-    .dayOfWeek {
-      font-size: 1.5rem;
-    }
+  body {
+    background-color: var(--background-color);
+    color: #2d2d2d;
+    text-align: center;
+    max-width: 400px;
+    padding: 1rem;
+    margin: auto;
+    font-family:sans-serif
+  }
+  .wrapper{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .clock {
+    font-size: 4rem;
+  }
 
-    .bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
-    }
-  </style>
-  <body>
+  .day,
+  .dayOfWeek {
+    font-size: 1.5rem;
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+  }
+
+  .calender {
+    margin: 3rem auto;
+    width: 180px;
+  }
+
+  .new__month {
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: #478afa;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .new__day {
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #141414;
+    border-bottom: 3px dotted #e2e2e2;
+    padding: 1rem 0;
+
+  }
+
+  .new__dayofweek {
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #141414;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 0 0 0 1rem;
+    position: relative;
+  }
+
+  .new__dayofweek::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 35px solid var(--background-color);
+    border-top: 35px solid #555555;
+  }
+</style>
+
+<body>
+  <div class="wrapper">
     <div id="clock" class="clock"></div>
     <div class="bottom">
       <div id="day" class="day"></div>
       <div id="dayOfWeek" class="dayOfWeek"></div>
     </div>
+    <div class="calender">
+      <div class="new__month"></div>
+      <div class="new__day"></div>
+      <div class="new__dayofweek"></div>
+    </div>
+  </div>
 
-    <script>
-      const showTime = () => {
-        let date = new Date();
-        console.log(date);
+  <script>
+    
+    const showTime = () => {
+      let date = new Date();
+      console.log(date);
 
-        let weekday = [
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday',
-        ];
+      let weekday = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ];
 
-        let months = [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December',
-        ];
+      let months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
 
-        let h = date.getHours();
-        let m = date.getMinutes();
-        let s = date.getSeconds();
-        let session = 'AM';
+      let h = date.getHours();
+      let m = date.getMinutes();
+      let s = date.getSeconds();
+      let session = 'AM';
 
-        let dayOfWeek = weekday[date.getDay()];
-        let dayOfMonth = date.getDate();
+      let dayOfWeek = weekday[date.getDay()];
+      let dayOfMonth = date.getDate();
 
-        if (h == 0) {
-          h = 12;
-        }
+      if (h == 0) {
+        h = 12;
+      }
 
-        if (h > 12) {
-          h = h - 12;
-          session = 'PM';
-        }
+      if (h > 12) {
+        h = h - 12;
+        session = 'PM';
+      }
+      if (h < 10) {
+        h = "0" + h;
+      }
+      if (m < 10) {
+        m = "0" + m;
+      }
+      if (s < 10) {
+        s = "0" + s;
+      }
 
-        let time = h + ':' + m + ':' + s + ' ' + session;
+      let time = h + ':' + m + ':' + s + ' ' + session;
 
-        document.querySelector('.clock').innerText = time;
-        document.querySelector('.clock').textContent = time;
+      document.querySelector('.clock').innerText = time;
+      document.querySelector('.clock').textContent = time;
 
-        document.querySelector('.day').innerHTML =
-          months[date.getMonth()] +
-          ' ' +
-          dayOfMonth +
-          ', ' +
-          date.getFullYear();
-
+      document.querySelector('.day').innerHTML =
+        months[date.getMonth()] +
+        ' ' +
+        dayOfMonth +
+        ', ' +
+        date.getFullYear();
+        document.querySelector('.new__month').innerText=months[date.getMonth()].substring(0,3);
+        document.querySelector('.new__day').innerText=dayOfMonth;
         document.querySelector('.dayOfWeek').innerHTML = dayOfWeek;
-        setTimeout(showTime, 1000);
-      };
+        document.querySelector('.new__dayofweek').innerText=dayOfWeek.substring(0,3);
+      setTimeout(showTime, 1000);
+    };
 
-      showTime();
-    </script>
-  </body>
+    showTime();
+  </script>
+</body>
+
 </html>
