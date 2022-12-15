@@ -14,15 +14,15 @@
   :root{
     --background-color: #dbdbdb;
   }
-
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
   body {
     background-color: var(--background-color);
     color: #2d2d2d;
     text-align: center;
-    max-width: 400px;
     padding: 1rem;
     margin: auto;
-    font-family:sans-serif
+    font-family: 'Bebas Neue', cursive;
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
   }
   .wrapper{
     height: 100vh;
@@ -34,12 +34,12 @@
     flex-direction: column;
   }
   .clock {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 
   .day,
   .dayOfWeek {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .bottom {
@@ -47,6 +47,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+    width: 330px;
   }
 
   .calender {
@@ -55,12 +56,14 @@
   }
 
   .new__month {
+    text-align: center;
     padding: 0.5rem 1rem;
     color: #fff;
     background-color: #478afa;
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 1rem 1rem 0 0;
+    letter-spacing: .5rem;
   }
 
   .new__day {
@@ -70,8 +73,8 @@
     font-weight: 700;
     color: #141414;
     border-bottom: 3px dotted #e2e2e2;
+    text-align: center;
     padding: 1rem 0;
-
   }
 
   .new__dayofweek {
@@ -82,6 +85,7 @@
     font-weight: 600;
     border-radius: 0 0 0 1rem;
     position: relative;
+    letter-spacing: .5rem;
   }
 
   .new__dayofweek::before {
@@ -176,11 +180,11 @@
         months[date.getMonth()] +
         ' ' +
         dayOfMonth +
-        ', ' +
-        date.getFullYear();
+        ',' + 
+        date.getFullYear()+' ';
+        document.querySelector('.dayOfWeek').innerHTML =dayOfWeek;
         document.querySelector('.new__month').innerText=months[date.getMonth()].substring(0,3);
         document.querySelector('.new__day').innerText=dayOfMonth;
-        document.querySelector('.dayOfWeek').innerHTML = dayOfWeek;
         document.querySelector('.new__dayofweek').innerText=dayOfWeek.substring(0,3);
       setTimeout(showTime, 1000);
     };
