@@ -21,8 +21,8 @@
     text-align: center;
     padding: 1rem;
     margin: auto;
+    overflow: hidden;
     font-family: 'Bebas Neue', cursive;
-    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
   }
   .wrapper{
     height: 100vh;
@@ -33,28 +33,33 @@
     justify-content: center;
     flex-direction: column;
   }
+  .clock-holder{
+    width: 500px;
+
+  }
   .clock {
-    font-size: 5rem;
+    font-size: 6rem;
   }
 
   .day,
   .dayOfWeek {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    letter-spacing: .2rem;
   }
-
+  .dayOfWeek{
+    color: #3d0135;
+  }
   .bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 0 2rem;
-    width: 330px;
+    width: 100%;
   }
 
   .calender {
     margin: 3rem auto;
     width: 180px;
-  }
-
+    }
   .new__month {
     text-align: center;
     padding: 0.5rem 1rem;
@@ -67,7 +72,6 @@
   }
 
   .new__day {
-    padding: 0.5rem 1rem;
     background-color: #fff;
     font-size: 4rem;
     font-weight: 700;
@@ -102,15 +106,17 @@
 
 <body>
   <div class="wrapper">
-    <div id="clock" class="clock"></div>
-    <div class="bottom">
-      <div id="day" class="day"></div>
-      <div id="dayOfWeek" class="dayOfWeek"></div>
-    </div>
-    <div class="calender">
-      <div class="new__month"></div>
-      <div class="new__day"></div>
-      <div class="new__dayofweek"></div>
+    <div class="clock-holder">
+      <div id="clock" class="clock"></div>
+      <div class="bottom">
+        <div id="day" class="day"></div>
+        <div id="dayOfWeek" class="dayOfWeek"></div>
+      </div>
+      <div class="calender">
+        <div class="new__month"></div>
+        <div class="new__day"></div>
+        <div class="new__dayofweek"></div>
+      </div>
     </div>
   </div>
 
@@ -180,7 +186,7 @@
         months[date.getMonth()] +
         ' ' +
         dayOfMonth +
-        ',' + 
+        ', ' + 
         date.getFullYear()+' ';
         document.querySelector('.dayOfWeek').innerHTML =dayOfWeek;
         document.querySelector('.new__month').innerText=months[date.getMonth()].substring(0,3);
